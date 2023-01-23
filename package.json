@@ -3,7 +3,7 @@
   "version": "1.1.2",
   "description": "Coverage Guided Javascript Fuzzer",
   "main": "build/src/index.js",
-  "types": "build/src/inde.d.ts",
+  "types": "build/src/index.d.ts",
   "repository": {
     "type": "git",
     "url": "git@gitlab.com:gitlab-org/security-products/analyzers/fuzzers/jsfuzz.git"
