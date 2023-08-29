@@ -1,8 +1,9 @@
-.idea
-node_modules
-build
-crash-*
-corpus/*
-examples/
-coverage
-.nyc_output
+*
+
+# allowlist
+!build/
+!CONTRIBUTING.md
+!LICENSE
+!package.json
+!README.md
+!tshook.ts
