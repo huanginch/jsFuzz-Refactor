@@ -1,6 +1,6 @@
 {
   "name": "@gitlab-org/jsfuzz",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "Coverage Guided Javascript Fuzzer",
   "main": "build/src/index.js",
   "types": "build/src/index.d.ts",
