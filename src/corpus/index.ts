@@ -1,13 +1,9 @@
 import * as fs from "fs";
 import * as path from "path";
 import strategies from "./Strategies";
-import {uint16, uint32} from "../math";
 import BufferMutator from "./BufferMutator";
+import { rand } from "./utils/helpers";
 var crypto = require('crypto');
-
-const INTERESTING8 = new Uint8Array([-128, -1, 0, 1, 16, 32, 64, 100, 127]);
-const INTERESTING16 = new Uint16Array([-32768, -129, 128, 255, 256, 512, 1000, 1024, 4096, 32767, -128, -1, 0, 1, 16, 32, 64, 100, 127]);
-const INTERESTING32 = new Uint32Array([-2147483648, -100663046, -32769, 32768, 65535, 65536, 100663045, 2147483647, -32768, -129, 128, 255, 256, 512, 1000, 1024, 4096, 32767, -128, -1, 0, 1, 16, 32, 64, 100, 127]);
 
 
 export class Corpus {
@@ -59,7 +55,7 @@ export class Corpus {
             this.putBuffer(buf);
             return buf;
         }
-        const buffer = this.inputs[this.rand(this.inputs.length)];
+        const buffer = this.inputs[rand(this.inputs.length)];
         return this.mutate(buffer);
     }
 
@@ -72,14 +68,6 @@ export class Corpus {
         }
     }
 
-    private randBool(): boolean {
-        return Math.random() >= 0.5;
-    }
-
-    private rand(n: number): number {
-        return Math.floor(Math.random() * Math.floor(n));
-    }
-
     private dec2bin(dec: number): string{
         const bin = dec.toString(2);
         return '0'.repeat(32 - bin.length) + bin;
@@ -87,7 +75,7 @@ export class Corpus {
 
     // Exp2 generates n with probability 1/2^(n+1).
     private Exp2(): number {
-        const bin = this.dec2bin(this.rand(2**32));
+        const bin = this.dec2bin(rand(2**32));
         let count = 0;
         for (let i=0; i<32; i++) {
             if(bin[i] === '0') {
@@ -97,17 +85,6 @@ export class Corpus {
             }
         }
         return count;
-    }
-
-    private chooseLen(n: number): number {
-        const x = this.rand(100);
-        if (x < 90) {
-            return this.rand(Math.min(8, n)) + 1
-        } else if (x < 99) {
-            return this.rand(Math.min(32, n)) + 1
-        } else {
-            return this.rand(n) + 1;
-        }
     }
 
     private toAscii(buf: Buffer): void {
@@ -127,7 +104,7 @@ export class Corpus {
         for (let i=0; i<nm; i++) {
             const bufferMutator = new BufferMutator(strategies);
             res = bufferMutator.mutate(res, this.inputs);
-            if (Buffer.compare(buf, res) === 0) {
+            if (Buffer.compare(buf, res) === 0) { // if the mutation is the same as the original input, then discard it
                 i--;
                 continue;
             }
