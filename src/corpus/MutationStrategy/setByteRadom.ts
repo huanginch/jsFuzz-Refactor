@@ -1,7 +1,7 @@
 import MutationStrategy from '.';
 import { rand } from '../utils/helpers';
 
-class setByteRandom implements MutationStrategy {
+class SetByteRandom implements MutationStrategy {
   apply(buf: Buffer): Buffer {
     if (buf.length <= 1) {
       return buf;
@@ -12,4 +12,4 @@ class setByteRandom implements MutationStrategy {
   }
 }
 
-export default setByteRandom;
+export default SetByteRandom;

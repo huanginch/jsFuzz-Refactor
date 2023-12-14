@@ -1,7 +1,7 @@
 import MutationStrategy from ".";
 import { rand, randBool } from "../utils/helpers";
 
-class modifyByte implements MutationStrategy {
+class ModifyByte implements MutationStrategy {
   apply (buf: Buffer): Buffer {
     if (buf.length === 0) {
       return buf;
@@ -17,4 +17,4 @@ class modifyByte implements MutationStrategy {
   }
 }
 
-export default modifyByte;
+export default ModifyByte;

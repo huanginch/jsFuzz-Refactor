@@ -1,7 +1,7 @@
 import MutationStrategy from '.';
 import { rand, chooseLen } from '../utils/helpers';
 
-class insertOtherInput implements MutationStrategy {
+class InsertOtherInput implements MutationStrategy {
   apply(buf: Buffer, inputs?: Buffer[]): Buffer {
     if(inputs === undefined) {
       return buf;
@@ -25,4 +25,4 @@ class insertOtherInput implements MutationStrategy {
   }
 }
 
-export default insertOtherInput;
+export default InsertOtherInput;

@@ -1,7 +1,7 @@
 import MutationStrategy from '.';
 import { rand } from '../utils/helpers';
 
-class replaceAscii implements MutationStrategy {
+class ReplaceAscii implements MutationStrategy {
   apply(buf: Buffer): Buffer {
     const digits = [];
     for (let k = 0; k < buf.length; k++) {
@@ -23,4 +23,4 @@ class replaceAscii implements MutationStrategy {
   }
 }
 
-export default replaceAscii;
+export default ReplaceAscii;

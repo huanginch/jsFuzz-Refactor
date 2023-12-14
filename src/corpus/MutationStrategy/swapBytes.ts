@@ -1,7 +1,7 @@
 import MutationStrategy from ".";
 import { rand } from "../utils/helpers";
 
-class swapBytes implements MutationStrategy {
+class SwapBytes implements MutationStrategy {
   apply(buf: Buffer): Buffer {
     if (buf.length <= 1) {
       return buf;
@@ -16,4 +16,4 @@ class swapBytes implements MutationStrategy {
   }
 }
 
-export default swapBytes;
+export default SwapBytes;

@@ -4,7 +4,7 @@ import { rand, chooseLen } from '../utils/helpers';
 /**
  * Duplicate bytes in a buffer at random position, shuffle the bytes in between
  */
-class dupilcateByts implements MutationStrategy {
+class DupilcateByts implements MutationStrategy {
   apply (buf: Buffer): Buffer {
     if (buf.length <= 1) {
       return buf;
@@ -26,4 +26,4 @@ class dupilcateByts implements MutationStrategy {
   }
 
 }
-export default dupilcateByts;
+export default DupilcateByts;

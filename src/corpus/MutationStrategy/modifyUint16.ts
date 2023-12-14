@@ -2,7 +2,7 @@ import { rand, randBool } from "../utils/helpers";
 import { uint16 } from "../../math";
 import MutationStrategy from ".";
 
-class modifyUnit16 implements MutationStrategy {
+class ModifyUnit16 implements MutationStrategy {
   apply (buf: Buffer): Buffer {
     if (buf.length < 2) {
       return buf;
@@ -22,4 +22,4 @@ class modifyUnit16 implements MutationStrategy {
   }
 }
 
-export default modifyUnit16;
+export default ModifyUnit16;
