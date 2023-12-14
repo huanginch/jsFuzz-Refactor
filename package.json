@@ -10,10 +10,13 @@
   },
   "license": "Apache-2.0",
   "devDependencies": {
+    "@types/jest": "^29.5.11",
     "@types/node": "^10.0.3",
     "@types/yargs": "^13.0.3",
     "gts": "^1.1.0",
-    "typescript": "~3.5.0"
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.1",
+    "typescript": "^5.3.3"
   },
   "dependencies": {
     "deep-equal": "^1.1.0",
@@ -32,7 +35,8 @@
     "fix": "gts fix",
     "prepare": "npm run compile",
     "pretest": "npm run compile",
-    "posttest": "npm run check"
+    "posttest": "npm run check",
+    "test": "jest --coverage"
   },
   "bugs": {
     "url": "https://gitlab.com/gitlab-org/security-products/analyzers/fuzzers/jsfuzz/-/issues"

@@ -1,6 +1,7 @@
 import * as fs from "fs";
 import * as path from "path";
-import {uint16, uint32} from "./math";
+import mutationMethods from "./MutationStrategy";
+import {uint16, uint32} from "../math";
 var crypto = require('crypto');
 
 const INTERESTING8 = new Uint8Array([-128, -1, 0, 1, 16, 32, 64, 100, 127]);
@@ -36,18 +37,18 @@ export class Corpus {
 
     }
 
-    loadFiles(dir: string) {
+    private loadFiles(dir: string): void {
         fs.readdirSync(dir).forEach(file => {
             const full_path = path.join(dir, file);
             this.inputs.push(fs.readFileSync(full_path))
         });
     }
 
-    getLength() {
+    public getLength(): number {
         return this.inputs.length;
     }
 
-    generateInput() {
+    public generateInput(): Buffer {
         if (this.seedLength > 0) {
             this.seedLength -= 1;
             return this.inputs[this.seedLength];
@@ -61,7 +62,7 @@ export class Corpus {
         return this.mutate(buffer);
     }
 
-    putBuffer(buf: Buffer) {
+    public putBuffer(buf: Buffer): void {
         this.inputs.push(buf);
         if (this.corpusPath) {
             const filename = crypto.createHash('sha256').update(buf).digest('hex');
@@ -70,21 +71,21 @@ export class Corpus {
         }
     }
 
-    randBool() {
+    private randBool(): boolean {
         return Math.random() >= 0.5;
     }
 
-    rand(n: number) {
+    private rand(n: number): number {
         return Math.floor(Math.random() * Math.floor(n));
     }
 
-    dec2bin(dec: number){
+    private dec2bin(dec: number): string{
         const bin = dec.toString(2);
         return '0'.repeat(32 - bin.length) + bin;
     }
 
     // Exp2 generates n with probability 1/2^(n+1).
-    Exp2() {
+    private Exp2(): number {
         const bin = this.dec2bin(this.rand(2**32));
         let count = 0;
         for (let i=0; i<32; i++) {
@@ -97,7 +98,7 @@ export class Corpus {
         return count;
     }
 
-    chooseLen(n: number) {
+    private chooseLen(n: number): number {
         const x = this.rand(100);
         if (x < 90) {
             return this.rand(Math.min(8, n)) + 1
@@ -108,7 +109,7 @@ export class Corpus {
         }
     }
 
-    toAscii(buf: Buffer) {
+    private toAscii(buf: Buffer): void {
         let x;
         for (let i = 0; i < buf.length; i++) {
             x = buf[i] & 127;
@@ -118,10 +119,10 @@ export class Corpus {
         }
     }
 
-    mutate(buf: Buffer) {
+    private mutate(buf: Buffer): Buffer {
         let res = Buffer.allocUnsafe(buf.length);
         buf.copy(res, 0, 0, buf.length);
-        const nm = 1 + this.Exp2();
+        const nm = 1 + this.Exp2(); 
         for (let i=0; i<nm; i++) {
             const x = this.rand(16);
             if ( x ===0 ) {

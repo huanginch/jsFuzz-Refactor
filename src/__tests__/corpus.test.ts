@@ -4,7 +4,7 @@
 // case 4: test putBuffer function, it should add the buffer to the corpus
 
 import * as fs from "fs";
-import { Corpus } from "../corpus/corpus";
+import { Corpus } from "../corpus";
 
 let corpus: Corpus;
 beforeAll(() => {

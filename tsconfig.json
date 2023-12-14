@@ -3,7 +3,10 @@
   "compilerOptions": {
       "experimentalDecorators": true,
     "rootDir": ".",
-    "outDir": "build"
+    "outDir": "build",
+    "target": "es6",
+    "module": "commonjs",
+    "strict": true
   },
   "include": [
     "src/**/*.ts",

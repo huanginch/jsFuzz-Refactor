@@ -28,14 +28,14 @@ export function pickRandomOne<T>(arr: T[]): T {
   return arr[randInt(arr.length)];
 }
 
-export function uint32(n: number) {
+export function uint32(n: number): number {
     return (n & 0xffffffff) >>> 0;
 }
 
-export function uint16(n: number) {
+export function uint16(n: number): number {
     return (n & 0xffff) >>> 0;
 }
 
-export function uint8(n: number) {
+export function uint8(n: number): number {
     return (n & 0xff) >>> 0;
 }
