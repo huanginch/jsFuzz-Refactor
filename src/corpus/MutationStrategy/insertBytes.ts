@@ -1,7 +1,7 @@
 import MutationStrategy from '.';
 import { rand, chooseLen } from '../utils/helpers';
 
-class insertBytes implements MutationStrategy {
+class InsertBytes implements MutationStrategy {
   apply(buf: Buffer): Buffer {
     const pos = rand(buf.length + 1);
     const n = chooseLen(10);
@@ -14,4 +14,4 @@ class insertBytes implements MutationStrategy {
   }
 }
 
-export default insertBytes;
+export default InsertBytes;

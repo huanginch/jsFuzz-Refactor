@@ -3,7 +3,7 @@ import { rand } from '../utils/helpers';
 
 const INTERESTING8 = new Uint8Array([-128, -1, 0, 1, 16, 32, 64, 100, 127]);
 
-class replaceByte implements MutationStrategy {
+class ReplaceByte implements MutationStrategy {
   apply (buf: Buffer): Buffer {
     if (buf.length === 0) {
       return buf;
@@ -14,4 +14,4 @@ class replaceByte implements MutationStrategy {
   }
 }
 
-export default replaceByte;
+export default ReplaceByte;

@@ -1,7 +1,7 @@
 import MutationStrategy from '.';
 import { rand, chooseLen } from '../utils/helpers';
 
-class removeByteStrategy implements MutationStrategy {
+class RemoveByteStrategy implements MutationStrategy {
     apply(buf: Buffer): Buffer {
       if (buf.length <= 1) {
         return buf;
@@ -15,4 +15,4 @@ class removeByteStrategy implements MutationStrategy {
     }
 } 
 
-export default removeByteStrategy;
+export default RemoveByteStrategy;

@@ -1,7 +1,7 @@
 import MutationStrategy from '.';
 import { rand, chooseLen } from '../utils/helpers';
 
-class copyBytes implements MutationStrategy {
+class CopyBytes implements MutationStrategy {
   apply (buf: Buffer): Buffer {
     if (buf.length <= 1) {
       return buf;
@@ -17,4 +17,4 @@ class copyBytes implements MutationStrategy {
   }
 }
 
-export default copyBytes;
+export default CopyBytes;

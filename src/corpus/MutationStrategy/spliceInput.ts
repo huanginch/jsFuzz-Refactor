@@ -1,7 +1,7 @@
 import MutationStrategy from '.';
 import { rand } from '../utils/helpers';
 
-class spliceInput implements MutationStrategy {
+class SpliceInput implements MutationStrategy {
   apply(buf: Buffer, inputs?: Buffer[]): Buffer {
     if(inputs === undefined) {
       return buf;
@@ -34,4 +34,4 @@ class spliceInput implements MutationStrategy {
   }
 }
 
-export default spliceInput;
+export default SpliceInput;
